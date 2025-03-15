@@ -33,8 +33,11 @@ function addRiskItem(riskName, riskLevel, department) {
     const resolveButton = document.createElement("button");
     resolveButton.textContent = "Resolve";
     resolveButton.classList.add("resolve-button");
-    resolveButton.addEventListener("click", function()
-        {riskDashboard.removeChild(riskItem)})
+    resolveButton.addEventListener("click", function(event){
+        // Task 6: Handling Event Propagation
+        event.stopPropagation();
+        riskDashboard.removeChild(riskItem);
+    })
 
    
     
