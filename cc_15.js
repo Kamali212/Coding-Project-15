@@ -14,22 +14,19 @@ function addRiskItem(riskName, riskLevel, department) {
 
     const riskLabel = document.createElement("span");
     riskLabel.textContent =  riskLevel;
+
+    const departmentLabel = document.createElement("p");
+    departmentLabel.textContent = department;
     
     // Task 4: Categorizing Risks by Level
     if (riskLevel.toLowerCase() === "high") {
-        riskItem.classList.add("high-priority")
-        riskItem.style.backgroundColor = "#95b584";
-        riskItem.style.color = "black";
+        riskItem.classList.add("high-priority");
     
     } else if (riskLevel.toLowerCase() === "medium") {
-        riskItem.classList.add("medium-priority")
-        riskItem.style.backgroundColor = "#8bb6d9";
-        riskItem.style.color = "black";
+        riskItem.classList.add("medium-priority");
     
     } else if (riskLevel.toLowerCase() === "low") {
         riskItem.classList.add("low-priority");
-        riskItem.style.backgroundColor = "#e0a6d4";
-        riskItem.style.color = "black";
     }
     
     // Task 3 Removing Risk Items
@@ -39,8 +36,7 @@ function addRiskItem(riskName, riskLevel, department) {
     resolveButton.addEventListener("click", function()
         {riskDashboard.removeChild(riskItem)})
 
-    const departmentLabel = document.createElement("p");
-    departmentLabel.textContent = department;
+   
     
     riskItem.appendChild(nameHeading);
     riskItem.appendChild(riskLabel);
@@ -50,6 +46,46 @@ function addRiskItem(riskName, riskLevel, department) {
 riskDashboard.appendChild(riskItem);
 }
 
-// Test Case
+ // Task 5 Implementing Bulk Updates 
+
+ const updateButton = document.createElement("button");
+ updateButton.textContent = "Increase Risk Levels";
+ updateButton.classList.add("update-button");
+ updateButton.addEventListener("click", function(){
+     const riskItems = document.querySelectorAll(".risk-item");
+     riskItems.forEach(item => {
+         const riskLabel = item.querySelector("span");
+         const currentLevel = riskLabel.textContent.toLocaleLowerCase();
+
+         if (currentLevel === "low") {
+             riskLabel.textContent = "Medium";
+             item.classList.remove("low-priority");
+             item.classList.add("medium-priority");
+         }
+
+         if (currentLevel === "medium") {
+            riskLabel.textContent = "High";
+            item.classList.remove("medium-priority");
+            item.classList.add("high-priority");
+         }
+     })
+ })
+
+ riskDashboard.appendChild(updateButton)
+
+// Test Case Task 2
 addRiskItem("Data Breach", "High", "IT");
 addRiskItem("Supply Chain Disruption", "Medium", "Operations");
+
+// Test Case Task 3
+// Clicking "Resolve" should remove this risk from the dashboard.
+addRiskItem("Market Fluctuations", "High", "Finance");
+
+
+// Test Case Task 4
+
+addRiskItem("Cybersecurity Threat", "High", "IT");
+addRiskItem("HR Compliance Issue", "Low", "Human Resources");
+
+// Test Case Task 5
+addRiskItem("Employee Retention", "Low", "HR");
