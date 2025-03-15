@@ -15,6 +15,23 @@ function addRiskItem(riskName, riskLevel, department) {
     const riskLabel = document.createElement("span");
     riskLabel.textContent =  riskLevel;
     
+    // Task 4: Categorizing Risks by Level
+    if (riskLevel.toLowerCase() === "high") {
+        riskItem.classList.add("high-priority")
+        riskItem.style.backgroundColor = "#95b584";
+        riskItem.style.color = "black";
+    
+    } else if (riskLevel.toLowerCase() === "medium") {
+        riskItem.classList.add("medium-priority")
+        riskItem.style.backgroundColor = "#8bb6d9";
+        riskItem.style.color = "black";
+    
+    } else if (riskLevel.toLowerCase() === "low") {
+        riskItem.classList.add("low-priority");
+        riskItem.style.backgroundColor = "#e0a6d4";
+        riskItem.style.color = "black";
+    }
+    
     // Task 3 Removing Risk Items
     const resolveButton = document.createElement("button");
     resolveButton.textContent = "Resolve";
