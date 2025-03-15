@@ -14,13 +14,21 @@ function addRiskItem(riskName, riskLevel, department) {
 
     const riskLabel = document.createElement("span");
     riskLabel.textContent =  riskLevel;
+    
+    // Task 3 Removing Risk Items
+    const resolveButton = document.createElement("button");
+    resolveButton.textContent = "Resolve";
+    resolveButton.classList.add("resolve-button");
+    resolveButton.addEventListener("click", function()
+        {riskDashboard.removeChild(riskItem)})
 
     const departmentLabel = document.createElement("p");
     departmentLabel.textContent = department;
     
-riskItem.appendChild(nameHeading);
-riskItem.appendChild(riskLabel);
-riskItem.appendChild(departmentLabel);
+    riskItem.appendChild(nameHeading);
+    riskItem.appendChild(riskLabel);
+    riskItem.appendChild(departmentLabel);
+    riskItem.appendChild(resolveButton);
 
 riskDashboard.appendChild(riskItem);
 }
